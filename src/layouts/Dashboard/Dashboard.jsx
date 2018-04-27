@@ -19,6 +19,8 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { Hidden } from "material-ui";
 import logo from "../../assets/img/reactlogo.png";
+import { Header} from "../Header";
+/* import { HeaderLinks } from "../Header"; */
 
 import sidebarStyle from "../../assets/jss/material-dashboard-react/sidebarStyle.jsx";
 
@@ -61,7 +63,7 @@ class PersistentDrawer extends React.Component {
         
         <List component="nav" className={classes.list}>
         <ListItem button>
-          <ListItemIcon>
+          <ListItemIcon className={classes.itemIcon}>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="Inbox"  className={classes.itemText}
@@ -69,7 +71,7 @@ class PersistentDrawer extends React.Component {
               />
         </ListItem>
         <ListItem button>
-          <ListItemIcon>
+          <ListItemIcon className={classes.itemIcon}>
             <DraftsIcon />
           </ListItemIcon>
           <ListItemText primary="Drafts" className={classes.itemText }
@@ -92,7 +94,7 @@ class PersistentDrawer extends React.Component {
    
 
     return (
-      <div>
+      <div className={classes.wrapper}>
       <Hidden mdUp>
         <Drawer
           variant="temporary"
@@ -108,7 +110,6 @@ class PersistentDrawer extends React.Component {
         >
           {brand}
           <div className={classes.sidebarWrapper}>
-           
             {links}
           </div>
           {image !== undefined ? (
@@ -138,6 +139,15 @@ class PersistentDrawer extends React.Component {
           ) : null}
         </Drawer>
       </Hidden>
+      <div className={classes.mainPanel} ref="mainPanel">
+          <Header
+            routes={dashboardRoutes}
+            handleDrawerToggle={this.handleDrawerToggle}
+            {...rest}
+          />
+          
+         
+        </div>
     </div>
     );
   }
